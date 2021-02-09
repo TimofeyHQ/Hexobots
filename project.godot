@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Hexobots"
+run/main_scene="res://Scenes/BattleScene.tscn"
 config/icon="res://icon.png"
 
 [rendering]
