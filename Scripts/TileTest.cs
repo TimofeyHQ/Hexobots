@@ -1,9 +1,4 @@
-[gd_scene load_steps=3 format=2]
-
-[sub_resource type="PlaneMesh" id=1]
-
-[sub_resource type="CSharpScript" id=2]
-script/source = "using Godot;
+using Godot;
 using System;
 
 public class TileTest : MeshInstance
@@ -26,15 +21,3 @@ public class TileTest : MeshInstance
 //      
 //  }
 }
-"
-
-[node name="TileTestScene" type="Spatial"]
-
-[node name="TileTest" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.999956, 0.00942464, 0, -0.00942464, 0.999956, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-script = SubResource( 2 )
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -3.69871, 2.4616, 0 )
