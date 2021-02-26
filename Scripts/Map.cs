@@ -11,7 +11,7 @@ public class Map : Spatial
         var _tile_scene = GD.Load<PackedScene>("res://Scenes/TileTest.tscn");
         var _tile = _tile_scene.Instance() as TileTest;
         AddChild(_tile);
-        _tile._Move_tile(1, 1);
+        _tile._Move_tile(0, 0);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
