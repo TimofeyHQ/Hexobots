@@ -6,11 +6,10 @@ public class TileTest : MeshInstance
     // Declare member variables here. Examples:
     public void _Move_tile(int row, int column)
     {
+        coordinats[0] = row;
+        coordinats[1] = column;
         Vector3 new_coords;
-        if (Math.Abs(column) == 2)
-            new_coords = new Vector3((float)Math.Sqrt(3), 0, 0);
-        else
-            new_coords = new Vector3((float)Math.Sqrt(3)/2, 0, 1.5F);
+        new_coords = new Vector3(row*(float)Math.Sqrt(3)/2, 0, column*1.5F);
         this.Transform = Transform.Translated(new_coords);
     }
     public int movement{get; private set;}
@@ -20,13 +19,6 @@ public class TileTest : MeshInstance
     TileTest(){
         coordinats[0] = 0;
         coordinats[1] = 0;
-    }
-
-    TileTest(int row, int column)
-    {
-        coordinats[0] = row;
-        coordinats[1] = column;
-        _Move_tile(row, column);
     }
 
     // Called when the node enters the scene tree for the first time.
