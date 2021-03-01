@@ -41,6 +41,19 @@ public class TileTest : MeshInstance
         this.Mesh = new_mesh;
     }
     
+    public void _Set_Random_Tiletype(int amount_of_variants)
+    {
+        string type;
+        Random rand = new Random();
+        switch (rand.Next(amount_of_variants))
+        {
+            case 0: type = "Grass"; break;
+            case 1: type = "Lake"; break;
+            case 2: type = "Mountain"; break;
+            default: type = "Grass"; break;
+        }
+        _Set_tiletype(type);
+    }
     public int movement{get; private set;}
     // private unit unit_on_tile;
     public bool is_unit_on_tile{get; private set;}

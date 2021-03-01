@@ -23,6 +23,13 @@ public class Map : Spatial
                 map[i + 4, j + amount_of_columns - 5] = _tile;
             }
         }
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 9; j ++)
+            {
+            if (map[i, j] == null) continue;
+            if ((j <= 1) || (j >= 7)) map[i, j]._Set_Random_Tiletype(2);
+            else map[i, j]._Set_Random_Tiletype(3);
+            }
     }
     public override void _Ready()
     {
