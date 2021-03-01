@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Map.cs" type="Script" id=1]
+[ext_resource path="res://Resources/Fonts/20354.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 39
+outline_size = 2
+outline_color = Color( 0.729412, 0.254902, 0.796078, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 1
+outline_color = Color( 0.898039, 0.0627451, 0.0627451, 1 )
+font_data = ExtResource( 2 )
 
 [node name="BattleScene" type="Spatial"]
 
@@ -10,3 +22,62 @@ script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 2.09447e-07, -2.49609e-07, 0, 0.766044, 0.642788, 3.25841e-07, 0.642788, -0.766044, 0, 7, -11 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.49835
+margin_right = 4.09595
+margin_bottom = -1.49835
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TurnLabel" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -195.0
+margin_top = 5.54565
+margin_right = 195.0
+margin_bottom = 46.5457
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( -710.198, 435.808 )
+custom_fonts/font = SubResource( 1 )
+text = "Player's turn 0"
+align = 1
+valign = 1
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextTurnButton" type="Button" parent="UI"]
+anchor_left = 0.825
+anchor_top = 0.902
+anchor_right = 0.989
+anchor_bottom = 0.983
+margin_left = -0.179199
+margin_top = -0.200012
+margin_right = 0.213074
+margin_bottom = 0.199951
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextTurnLabel" type="Label" parent="UI/NextTurnButton"]
+anchor_left = 0.826
+anchor_top = 0.892
+anchor_right = 0.989
+anchor_bottom = 1.0
+margin_left = -139.594
+margin_top = -35.7554
+margin_right = 0.858994
+margin_bottom = -14.0474
+custom_fonts/font = SubResource( 2 )
+text = "Next Turn"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
