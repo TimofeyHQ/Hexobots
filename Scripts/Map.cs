@@ -32,10 +32,11 @@ public class Map : Spatial
             }
     }
 
-    class Pathfinder
+    public TileTest _Get_Tile_from_Map(int rows, int columns)
     {
-
+        return map[rows, columns];
     }
+
     public override void _Ready()
     {
         _Map_Generation();
