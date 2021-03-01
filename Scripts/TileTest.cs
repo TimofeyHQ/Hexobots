@@ -58,6 +58,10 @@ public class TileTest : MeshInstance
     // private unit unit_on_tile;
     public bool is_unit_on_tile{get; private set;}
     private int []coords = new int[2];
+    public int coord(int number)
+    {
+        return coords[number];
+    }
     private string tile_type = "None";
     TileTest(){
         coords[0] = 0;

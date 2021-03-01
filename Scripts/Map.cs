@@ -20,7 +20,7 @@ public class Map : Spatial
                 var _tile = _tile_scene.Instance() as TileTest;
                 AddChild(_tile);
                 _tile._Move_tile(i, j);
-                map[i + 4, j + amount_of_columns - 5] = _tile;
+                map[_tile.coord(0) + 4, _tile.coord(1) + 4] = _tile;
             }
         }
         for (int i = 0; i < 9; i++)
