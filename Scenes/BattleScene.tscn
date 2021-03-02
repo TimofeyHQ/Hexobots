@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Map.cs" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/20354.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/NextTurnButton.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/TurnLabel.cs" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 39
@@ -48,6 +50,7 @@ text = "Player's turn 0"
 align = 1
 valign = 1
 max_lines_visible = 1
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -61,6 +64,7 @@ margin_left = -0.179199
 margin_top = -0.200012
 margin_right = 0.213074
 margin_bottom = 0.199951
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -70,9 +74,9 @@ anchor_left = 0.826
 anchor_top = 0.892
 anchor_right = 0.989
 anchor_bottom = 1.0
-margin_left = -139.594
+margin_left = -138.007
 margin_top = -35.7554
-margin_right = 0.858994
+margin_right = 2.4464
 margin_bottom = -14.0474
 custom_fonts/font = SubResource( 2 )
 text = "Next Turn"
@@ -81,3 +85,4 @@ valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="UI/NextTurnButton" to="UI/TurnLabel" method="_on_NextTurnButton_pressed"]
