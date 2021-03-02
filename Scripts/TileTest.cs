@@ -4,6 +4,14 @@ using System;
 public class TileTest : MeshInstance
 {
     // Declare member variables here. Examples:
+    public int movement{get; private set;}
+    // private unit unit_on_tile;
+    public bool is_unit_on_tile{get; private set;}
+    private int []coords = new int[2];
+    private string tile_type = "None";
+    
+    [Signal]
+    public delegate void _Tile_selected(TileTest thisone);
     public void _Move_tile(int row, int column)
     {
         coords[0] = row;
@@ -54,24 +62,23 @@ public class TileTest : MeshInstance
         }
         _Set_tiletype(type);
     }
-    public int movement{get; private set;}
-    // private unit unit_on_tile;
-    public bool is_unit_on_tile{get; private set;}
-    private int []coords = new int[2];
     public int coord(int number)
     {
         return coords[number];
     }
-    private string tile_type = "None";
     TileTest(){
         coords[0] = 0;
         coords[1] = 0;
     }
 
+    public void _on_StaticBody_imput_event()
+    {
+        EmitSignal(nameof(_Tile_selected), this);
+    }
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

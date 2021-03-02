@@ -13,9 +13,10 @@ public class TurnLabel : Label
         switch (gamemode)
         {
             case "PvP":
+                current_controller = "Player";
                 if (current_player == 1) current_player++;
                 else current_player--;
-                this.Text = "Player" + " " + current_player.ToString() + "'s turn";
+                this.Text = current_controller + " " + current_player.ToString() + "'s turn";
                 break;
             case "PvE":
                 if (current_controller == "Player") current_controller = "AI";
