@@ -4,12 +4,13 @@ using static System.Math;
 
 public class unit : KinematicBody
 {
-    [Export]
-    public int attack = 1;
-    [Export]
-    public int defence = 1;
-    [Export]
-    public int action_points = 3;
+    public bool stats_set {get; private set;}
+    public uint action_points_cap {get; private set;} 
+    public uint health_points_cap {get; private set;} 
+    public uint attack_points {get; private set;} 
+    public uint defence_points {get; private set;} 
+    public uint health_points_current {get; set;}
+    public uint action_points_current {get; set;}  
     [Export]
     public int speed = 10;
     [Export]
@@ -114,5 +115,28 @@ public class unit : KinematicBody
             is_shooting = false;
             GetNode("bullet").QueueFree();
         }
+    }
+
+    public void _Set_Stats(uint AP, uint HP, uint damage, uint defence)
+    {
+        if (stats_set == false)
+        {
+            action_points_cap = AP;
+            health_points_cap = HP;
+            attack_points = damage;
+            defence_points = defence; 
+            health_points_current = HP;
+            action_points_current = AP;      
+        }
+    }
+
+    public void _Receive_Damage(uint damage)
+    {
+
+    }
+
+    public void _Death()
+    {
+
     }
 }
