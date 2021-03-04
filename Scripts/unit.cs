@@ -139,4 +139,10 @@ public class unit : KinematicBody
     {
 
     }
+
+    public void _Teleport_unit(Vector3 new_pos)
+    {
+        this.Transform = Transform.Translated(new_pos);
+        this.point = new_pos;
+    }
 }
