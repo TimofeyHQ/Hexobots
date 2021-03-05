@@ -21,6 +21,7 @@ public class Map : Spatial
                 AddChild(_tile);
                 _tile._Move_tile(i, j);
                 map[_tile.coord(0) + 5, _tile.coord(1) + 5] = _tile;
+                _tile.Connect("_Tile_selected", GetNode("../Selector"), "_on_Tile_selected");
             }
         }
         for (int i = 0; i < 11; i++)
@@ -32,6 +33,24 @@ public class Map : Spatial
             }
     }
 
+    private void _Spawn_units()
+    {
+        var _unit_scene = GD.Load<PackedScene>("res://Scenes/unit.tscn");
+        for (int i = 1; i < 10; i += 4)
+        {
+            var _unit = _unit_scene.Instance() as unit;
+            _unit._Teleport_unit(map[i, 0].Transform.origin);
+            AddChild(_unit);
+            _unit.AddToGroup("Player1");
+        }
+        for (int i = 1; i < 10; i += 4)
+        {
+            var _unit = _unit_scene.Instance() as unit;
+            _unit._Teleport_unit(map[i, 10].Transform.origin);
+            AddChild(_unit);
+            _unit.AddToGroup("Player2");
+        }
+    }
     public TileTest _Get_Tile_from_Map(int rows, int columns)
     {
         return map[rows, columns];
@@ -40,6 +59,7 @@ public class Map : Spatial
     public override void _Ready()
     {
         _Map_Generation();
+        _Spawn_units();
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
