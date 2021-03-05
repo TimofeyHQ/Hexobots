@@ -21,7 +21,7 @@ public class Map : Spatial
                 AddChild(_tile);
                 _tile._Move_tile(i, j);
                 map[_tile.coord(0) + 5, _tile.coord(1) + 5] = _tile;
-//                GD.Print((_tile.coord(0) + 5).ToString() + " " + ( _tile.coord(1) + 5).ToString() + "\n");
+                _tile.Connect("_Tile_selected", GetNode("../Selector"), "_on_Tile_selected");
             }
         }
         for (int i = 0; i < 11; i++)

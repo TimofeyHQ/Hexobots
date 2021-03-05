@@ -5,13 +5,12 @@ public class TileTest : MeshInstance
 {
     // Declare member variables here. Examples:
     public int movement{get; private set;}
-    // private unit unit_on_tile;
-    public bool is_unit_on_tile{get; private set;}
+    public unit unit_on_tile;
     private int []coords = new int[2];
     private string tile_type = "None";
     
     [Signal]
-    public delegate void _Tile_selected(TileTest thisone);
+    public delegate void _Tile_selected(TileTest this_one);
     public void _Move_tile(int row, int column)
     {
         coords[0] = row;
@@ -71,8 +70,9 @@ public class TileTest : MeshInstance
         coords[1] = 0;
     }
 
-    public void _on_StaticBody_imput_event()
-    {
+    public void _on_TileStaticBody_input_event(Node a, InputEvent inputEvent, Vector3 click, int shape_idx)
+    {   
+        GD.Print("Tile works");
         EmitSignal(nameof(_Tile_selected), this);
     }
     // Called when the node enters the scene tree for the first time.
