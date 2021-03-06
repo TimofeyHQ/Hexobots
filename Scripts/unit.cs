@@ -134,7 +134,7 @@ public class unit : KinematicBody
         }
     }
 
-    public void _Receive_Damage(uint damage)
+    public void _Receive_Damage(int damage)
     {
 
     }
