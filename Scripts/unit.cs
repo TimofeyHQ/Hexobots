@@ -156,4 +156,9 @@ public class unit : KinematicBody
         this.tile_underneath = new_tile;
         new_tile.unit_on_tile = this;
     }
+
+    public void _Refresh_AP()
+    {
+        action_points_current = action_points_cap;
+    }
 }
