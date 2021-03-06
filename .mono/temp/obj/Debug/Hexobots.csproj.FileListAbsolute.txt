@@ -1,8 +1,0 @@
-G:\Projects\Hexobots\.mono\temp\obj\Debug\Hexobots.csprojAssemblyReference.cache
-G:\Projects\Hexobots\.mono\temp\obj\Debug\Hexobots.AssemblyInfoInputs.cache
-G:\Projects\Hexobots\.mono\temp\obj\Debug\Hexobots.AssemblyInfo.cs
-G:\Projects\Hexobots\.mono\temp\obj\Debug\Hexobots.csproj.CoreCompileInputs.cache
-G:\Projects\Hexobots\.mono\temp\bin\Debug\Hexobots.dll
-G:\Projects\Hexobots\.mono\temp\bin\Debug\Hexobots.pdb
-G:\Projects\Hexobots\.mono\temp\obj\Debug\Hexobots.dll
-G:\Projects\Hexobots\.mono\temp\obj\Debug\Hexobots.pdb
