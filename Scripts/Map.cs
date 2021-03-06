@@ -42,6 +42,7 @@ public class Map : Spatial
             _unit._Teleport_unit(map[i, 0].Transform.origin);
             AddChild(_unit);
             _unit.AddToGroup("Player1");
+            _unit._Change_Tile(map[i, 0]);
         }
         for (int i = 1; i < 10; i += 4)
         {
@@ -49,6 +50,7 @@ public class Map : Spatial
             _unit._Teleport_unit(map[i, 10].Transform.origin);
             AddChild(_unit);
             _unit.AddToGroup("Player2");
+            _unit._Change_Tile(map[i, 10]);
         }
     }
     public TileTest _Get_Tile_from_Map(int rows, int columns)

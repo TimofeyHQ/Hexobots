@@ -14,8 +14,17 @@ public class Selector : Spatial
 
     private void _on_Tile_selected(TileTest tile)
     {
-        if (first == null && tile.unit_on_tile == null)
-            {first = tile; tile._Set_tiletype("Mountain");}
+        if (first == null && tile.unit_on_tile != null)
+        { 
+            first = tile;
+            GD.Print("first");
+        }
+        else if (first != null && tile.unit_on_tile == null)
+        {
+            GD.Print("second");
+            first.unit_on_tile._Change_Tile(tile);
+            first = null;
+        }    
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

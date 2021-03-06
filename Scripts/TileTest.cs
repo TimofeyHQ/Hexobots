@@ -75,7 +75,6 @@ public class TileTest : MeshInstance
         if (inputEvent is InputEventMouseButton eventMB)
             if (eventMB.Pressed && eventMB.ButtonIndex == 1)
             {
-                GD.Print("Tile works");
                 EmitSignal(nameof(_Tile_selected), this);
             }
     }
