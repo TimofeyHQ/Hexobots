@@ -5,12 +5,12 @@ public class Selector : Spatial
 {
     // Declare member variables here. Examples:
     TileTest first;
-    TileTest second;
+    Map map;
     int curr_player = 3;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+        GetNode("../Map").Connect("map_selector_connection", this, "_Get_Map");
     }
 
     private void _on_Tile_selected(TileTest tile)
@@ -33,7 +33,13 @@ public class Selector : Spatial
                 first = null;
                 tile.unit_on_tile.action_points_current += tile.movement;
             }
-        }    
+        }
+        else if (first != null && tile.unit_on_tile != null && ((first.unit_on_tile.IsInGroup("Player1") && tile.unit_on_tile.IsInGroup("Player1"))||(first.unit_on_tile.IsInGroup("Player2") && tile.unit_on_tile.IsInGroup("Player2"))))
+            first = tile;
+        else if (first != null && tile.unit_on_tile != null && ((first.unit_on_tile.IsInGroup("Player1") && tile.unit_on_tile.IsInGroup("Player2"))||(first.unit_on_tile.IsInGroup("Player2") && tile.unit_on_tile.IsInGroup("Player1"))))
+        {    
+           /* if (map._Pathfind(first, tile))*/ first.unit_on_tile.deal_damage(tile.Transform.origin);
+        }
     }
 
     public void _Change_player()
@@ -43,6 +49,10 @@ public class Selector : Spatial
         GD.Print("Player"+ curr_player.ToString());
     }
 
+    public void _Get_Map(Map mp)
+    {
+        map = mp;
+    }
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {
