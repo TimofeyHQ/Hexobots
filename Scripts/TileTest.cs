@@ -70,10 +70,14 @@ public class TileTest : MeshInstance
         coords[1] = 0;
     }
 
-    public void _on_TileStaticBody_input_event(Node a, InputEvent inputEvent, Vector3 click, int shape_idx)
+    public void _on_Mouse_click(Node a, InputEvent inputEvent, Vector3 click_pos, Vector3 click_norm, int shape_idx)
     {   
-        GD.Print("Tile works");
-        EmitSignal(nameof(_Tile_selected), this);
+        if (inputEvent is InputEventMouseButton eventMB)
+            if (eventMB.Pressed && eventMB.ButtonIndex == 1)
+            {
+                GD.Print("Tile works");
+                EmitSignal(nameof(_Tile_selected), this);
+            }
     }
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
