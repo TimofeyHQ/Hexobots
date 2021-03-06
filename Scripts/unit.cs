@@ -16,6 +16,8 @@ public class unit : KinematicBody
     public int speed = 10;
     [Export]
     public int rot_speed = 5;
+    [Signal]
+    public delegate void _unit_selected(TileTest one_underneath);
     
 
     Vector3 velocity = Vector3.Zero;
@@ -160,5 +162,13 @@ public class unit : KinematicBody
     public void _Refresh_AP()
     {
         action_points_current = action_points_cap;
+    }
+    public void _on_Mouse_click(Node a, InputEvent inputEvent, Vector3 click_pos, Vector3 click_norm, int shape_idx)
+    {   
+        if (inputEvent is InputEventMouseButton eventMB)
+            if (eventMB.Pressed && eventMB.ButtonIndex == 1)
+            {
+                EmitSignal(nameof(_unit_selected), this.tile_underneath);
+            }
     }
 }

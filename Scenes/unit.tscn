@@ -4970,4 +4970,5 @@ anims/Robot_Yes = SubResource( 28 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00883925, 0.512249, 0.070532 )
 shape = SubResource( 29 )
+[connection signal="input_event" from="." to="." method="_on_Mouse_click"]
 [connection signal="animation_finished" from="model/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
