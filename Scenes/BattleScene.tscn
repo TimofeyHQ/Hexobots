@@ -4,7 +4,7 @@
 [ext_resource path="res://Resources/Fonts/20354.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/NextTurnButton.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/TurnLabel.cs" type="Script" id=4]
-[ext_resource path="res://Scripts/Selector.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/Camera.cs" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 39
@@ -20,13 +20,12 @@ font_data = ExtResource( 2 )
 [node name="BattleScene" type="Spatial"]
 
 [node name="Map" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021307, -0.0187058, -0.0249686 )
 script = ExtResource( 1 )
-
-[node name="Selector" type="Spatial" parent="."]
-script = ExtResource( 5 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 2.09447e-07, -2.49609e-07, 0, 0.766044, 0.642788, 3.25841e-07, 0.642788, -0.766044, 0, 7, -11 )
+script = ExtResource( 5 )
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
