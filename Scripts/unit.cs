@@ -5,12 +5,12 @@ using static System.Math;
 public class unit : KinematicBody
 {
     public bool stats_set {get; private set;}
-    public uint action_points_cap {get; private set;} 
-    public uint health_points_cap {get; private set;} 
-    public uint attack_points {get; private set;} 
-    public uint defence_points {get; private set;} 
-    public uint health_points_current {get; set;}
-    public uint action_points_current {get; set;}  
+    public int action_points_cap {get; private set;} 
+    public int health_points_cap {get; private set;} 
+    public int attack_points {get; private set;} 
+    public int defence_points {get; private set;} 
+    public int health_points_current {get; set;}
+    public int action_points_current {get; set;}  
     public TileTest tile_underneath {get; private set;}
     [Export]
     public int speed = 10;
@@ -119,7 +119,7 @@ public class unit : KinematicBody
         }
     }
 
-    public void _Set_Stats(uint AP, uint HP, uint damage, uint defence)
+    public void _Set_Stats(int AP, int HP, int damage, int defence)
     {
         if (stats_set == false)
         {

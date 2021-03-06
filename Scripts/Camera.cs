@@ -3,7 +3,7 @@ using System;
 
 public class Camera : Godot.Camera
 {
-    private int curr_player = 1;
+    private int curr_player = 2;
     private bool switching = false;
     private Vector3 player1_pos = new Vector3(0, 7, -11);
     private Vector3 player1_rot = new Vector3(-40, 180, 0);
@@ -22,7 +22,6 @@ public class Camera : Godot.Camera
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,12 +65,12 @@ public class Camera : Godot.Camera
             z += z_inc;
             arr[i] = new Vector3(Mathf.Sqrt(Mathf.Pow(radius, 2) - Mathf.Pow(z, 2)), player1_pos.y, z);
         }
-         for (int i = 0; i < size; i++)
-             GD.Print(i, ": ", arr[i]);
+        /* for (int i = 0; i < size; i++)
+             GD.Print(i, ": ", arr[i]);*/
         return (arr);
     }
 
-    
+
     public Vector3[] init_arr_rot()
     {
         Vector3[] arr = new Vector3[size];
