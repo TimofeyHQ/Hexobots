@@ -27,23 +27,13 @@ script = ExtResource( 1 )
 transform = Transform( -1, 2.09447e-07, -2.49609e-07, 0, 0.766044, 0.642788, 3.25841e-07, 0.642788, -0.766044, 0, 7, -11 )
 script = ExtResource( 5 )
 
-[node name="UI" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -1.49835
-margin_right = 4.09595
-margin_bottom = -1.49835
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TurnLabel" type="Label" parent="UI"]
+[node name="TurnLabel" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -195.0
-margin_top = 5.54565
-margin_right = 195.0
-margin_bottom = 46.5457
+margin_left = -192.952
+margin_top = 4.0473
+margin_right = 197.048
+margin_bottom = 45.0473
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( -710.198, 435.808 )
@@ -57,21 +47,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NextTurnButton" type="Button" parent="UI"]
+[node name="NextTurnButton" type="Button" parent="."]
 anchor_left = 0.825
 anchor_top = 0.902
 anchor_right = 0.989
 anchor_bottom = 0.983
-margin_left = -0.179199
-margin_top = -0.200012
-margin_right = 0.213074
-margin_bottom = 0.199951
+margin_left = 3.19995
+margin_top = -1.69836
+margin_right = 3.59222
+margin_bottom = -1.2984
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NextTurnLabel" type="Label" parent="UI/NextTurnButton"]
+[node name="NextTurnLabel" type="Label" parent="NextTurnButton"]
 anchor_left = 0.826
 anchor_top = 0.892
 anchor_right = 0.989
@@ -87,4 +77,4 @@ valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="UI/NextTurnButton" to="UI/TurnLabel" method="_on_NextTurnButton_pressed"]
+[connection signal="pressed" from="NextTurnButton" to="TurnLabel" method="_on_NextTurnButton_pressed"]

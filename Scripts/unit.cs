@@ -11,10 +11,12 @@ public class unit : KinematicBody
     public uint defence_points {get; private set;} 
     public uint health_points_current {get; set;}
     public uint action_points_current {get; set;}  
+    public TileTest tile_underneath {get; private set;}
     [Export]
     public int speed = 10;
     [Export]
     public int rot_speed = 5;
+    
 
     Vector3 velocity = Vector3.Zero;
     Vector3 direction;
@@ -144,5 +146,14 @@ public class unit : KinematicBody
     {
         this.Transform = Transform.Translated(new_pos);
         this.point = new_pos;
+    }
+
+    public void _Change_Tile(TileTest new_tile)
+    {   if(this.tile_underneath != null)
+            this.tile_underneath.unit_on_tile = null;
+        this.tile_underneath = null;
+        move(new_tile.Transform.origin);
+        this.tile_underneath = new_tile;
+        new_tile.unit_on_tile = this;
     }
 }
