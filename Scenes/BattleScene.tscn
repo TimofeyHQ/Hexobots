@@ -80,6 +80,7 @@ valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="map_selector_connection" from="Map" to="Selector" method="_Get_Map"]
 [connection signal="pressed" from="NextTurnButton" to="Camera" method="switch_sides"]
 [connection signal="pressed" from="NextTurnButton" to="Selector" method="_Change_player"]
 [connection signal="pressed" from="NextTurnButton" to="TurnLabel" method="_on_NextTurnButton_pressed"]

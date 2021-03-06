@@ -7,7 +7,7 @@ public class Map : Spatial
     private TileTest[,] map;
     // Called when the node enters the scene tree for the first time.
     [Signal]
-    public delegate void map_selector_connection(Map map);
+    public delegate void map_selector_connection(Map mp);
     private void _Map_Generation()
     {
         var _tile_scene = GD.Load<PackedScene>("res://Scenes/TileTest.tscn");
@@ -68,9 +68,9 @@ public class Map : Spatial
 
     public override void _Ready()
     {
-        EmitSignal("map_selector_connection", this);
         _Map_Generation();
         _Spawn_units();
+        EmitSignal("map_selector_connection", this);
     }
 
     public bool _Pathfind(TileTest one, TileTest two)
