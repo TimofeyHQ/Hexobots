@@ -40,6 +40,7 @@ public class Map : Spatial
         {
             var _unit = _unit_scene.Instance() as unit;
             _unit._Teleport_unit(map[i, 0].Transform.origin);
+            _unit._Set_Stats(4,10,4,4);
             AddChild(_unit);
             _unit.AddToGroup("Player1");
             _unit._Change_Tile(map[i, 0]);
@@ -48,6 +49,7 @@ public class Map : Spatial
         {
             var _unit = _unit_scene.Instance() as unit;
             _unit._Teleport_unit(map[i, 10].Transform.origin);
+            _unit._Set_Stats(4,10,4,4);
             AddChild(_unit);
             _unit.AddToGroup("Player2");
             _unit._Change_Tile(map[i, 10]);

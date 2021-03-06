@@ -15,7 +15,7 @@ public class Selector : Spatial
 
     private void _on_Tile_selected(TileTest tile)
     {
-        if (first == null && tile.unit_on_tile != null)
+        if (first == null && tile.unit_on_tile != null && tile?.unit_on_tile.action_points_current != 0)
         {
             if ((curr_player == 1 && tile.unit_on_tile.IsInGroup("Player1"))||(curr_player == 2 && tile.unit_on_tile.IsInGroup("Player2")))
             { 
@@ -23,7 +23,7 @@ public class Selector : Spatial
                 GD.Print("first " + tile.coord(0).ToString() + ';' + tile.coord(1).ToString());
             }
         }
-        else if (first != null && tile.unit_on_tile == null && (tile.movement != -1488))
+        else if (first != null && tile.unit_on_tile == null && (tile.movement + first.unit_on_tile.action_points_current >-1))
         {
             int x1 = first.coord(0), x2 = tile.coord(0), z1 = first.coord(1), z2 = tile.coord(1);
             if ((Math.Abs(x1 - x2) == 2 && z1 == z2) || (Math.Abs(x1 - x2) == 1 && Math.Abs(z1 - z2) == 1))
@@ -31,6 +31,7 @@ public class Selector : Spatial
                 GD.Print("second "+ tile.coord(0).ToString() + ';' + tile.coord(1).ToString());
                 first.unit_on_tile._Change_Tile(tile);
                 first = null;
+                tile.unit_on_tile.action_points_current += tile.movement;
             }
         }    
     }

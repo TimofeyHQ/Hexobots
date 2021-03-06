@@ -27,7 +27,7 @@ public class TileTest : MeshInstance
         {
             case "Grass":
                 tile_type = type;
-                movement = 0;
+                movement = -1;
                 new_mesh = GD.Load<Mesh>("res://Resources/Tiles/GrassTile.mesh");
                 break;
             case "Mountain":
@@ -36,12 +36,12 @@ public class TileTest : MeshInstance
                 new_mesh = GD.Load<Mesh>("res://Resources/Tiles/MountainTile.mesh");
                 break;
             case "Lake":
-                movement = -1;
+                movement = -2;
                 new_mesh = GD.Load<Mesh>("res://Resources/Tiles/LakeTile.mesh");
                 break;
             default:
                 tile_type = "Grass";
-                movement = 0;
+                movement = -1;
                 new_mesh = GD.Load<Mesh>("res://Resources/Tiles/GrassTile.mesh");
                 break;
         }
