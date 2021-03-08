@@ -18,6 +18,8 @@ public class unit : KinematicBody
     public int rot_speed = 5;
     [Signal]
     public delegate void _unit_selected(TileTest one_underneath);
+    [Signal]
+    public delegate void _unit_died();
     
 
     Vector3 velocity = Vector3.Zero;
@@ -136,12 +138,23 @@ public class unit : KinematicBody
 
     public void _Receive_Damage(int damage)
     {
-
+        Random rand = new Random();
+        for (int i = 0; i < defence_points; i ++)
+            if (damage > 0) 
+            {
+                if (rand.Next(10) > 2)
+                    health_points_current --;
+                damage --;
+            }
+        if (health_points_current <= 0) this._Death();    
+        GD.Print("Health: " + health_points_current.ToString());            
     }
 
-    public void _Death()
+    private void _Death()
     {
-
+        EmitSignal("_unit_died");
+        this.tile_underneath.unit_on_tile = null;
+        QueueFree();
     }
 
     public void _Teleport_unit(Vector3 new_pos)
