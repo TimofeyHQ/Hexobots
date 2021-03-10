@@ -3,7 +3,7 @@ using System;
 
 public class Camera : Godot.Camera
 {
-    private int curr_player = 2;
+    private int curr_player = 1;
     private bool switching = false;
     private bool start_game = true;
     private Vector3 player1_pos = new Vector3(0, 7, -11);
