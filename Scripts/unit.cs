@@ -38,7 +38,6 @@ public class unit : KinematicBody
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        anim_player = (AnimationPlayer)GetNode("model/AnimationPlayer");
         body = (KinematicBody)GetNode(".");
      //   move(new Vector3(3, 0, 3));
     }
@@ -77,9 +76,9 @@ public class unit : KinematicBody
         {
             anim = "Robot_Punch";
         }
-        if (anim == "Robot_Idle")
+        else if (health_points_current <= 0)
         {
-            body.Rotation = Vector3.Zero;
+            anim = "Robot_Death";
         }
 
         string curr_anim = anim_player.CurrentAnimation;
@@ -95,6 +94,27 @@ public class unit : KinematicBody
         //     GD.Print("x is ", x);
         //     GD.Print("z is ", z);
         // }
+    }
+
+    public void set_player(int player)
+    {
+        string name;
+        string path;
+
+        if (player == 1)
+        {
+            name = "BlueRobot";
+            path = "res://Scenes/BlueRobot.tscn";
+        }
+        else
+        {
+            name = "RedRobot";
+            path = "res://Scenes/RedRobot.tscn";
+        }
+        Node robot = GD.Load<PackedScene>(path).Instance();
+        AddChild(robot);
+        anim_player = (AnimationPlayer)GetNode(name+"/AnimationPlayer");
+        anim_player.Connect("animation_finished", GetNode("."), "_on_AnimationPlayer_animation_finished");
     }
 
     public void move(Vector3 dest)
@@ -121,6 +141,12 @@ public class unit : KinematicBody
             is_shooting = false;
             GetNode("bullet").QueueFree();
         }
+        else if (anim_name == "Robot_Death")
+        {
+            EmitSignal("_unit_died");
+            this.tile_underneath.unit_on_tile = null;
+            QueueFree();
+        }
     }
 
     public void _Set_Stats(int AP, int HP, int damage, int defence)
@@ -146,15 +172,7 @@ public class unit : KinematicBody
                     health_points_current --;
                 damage --;
             }
-        if (health_points_current <= 0) this._Death();    
         GD.Print("Health: " + health_points_current.ToString());            
-    }
-
-    private void _Death()
-    {
-        EmitSignal("_unit_died");
-        this.tile_underneath.unit_on_tile = null;
-        QueueFree();
     }
 
     public void _Teleport_unit(Vector3 new_pos)
