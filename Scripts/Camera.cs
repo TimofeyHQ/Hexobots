@@ -5,6 +5,7 @@ public class Camera : Godot.Camera
 {
     private int curr_player = 2;
     private bool switching = false;
+    private bool start_game = true;
     private Vector3 player1_pos = new Vector3(0, 7, -11);
     private Vector3 player1_rot = new Vector3(-40, 180, 0);
 
@@ -43,6 +44,11 @@ public class Camera : Godot.Camera
 
     public void switch_sides()
     {
+        if (start_game == true)
+        {
+            start_game = false;
+            return;
+        }
         arr_pos = init_arr_pos();
         arr_rot = init_arr_rot();
         switching = true;
