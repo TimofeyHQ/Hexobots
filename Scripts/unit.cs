@@ -47,7 +47,7 @@ public class unit : KinematicBody
     {
         bool is_moving = false;
 
-        if (point.DistanceTo(Transform.origin) > 0.05)
+        if (point.DistanceTo(Transform.origin) > 0.1)
         {
             direction = point - Transform.origin;
             direction = direction.Normalized() * speed;
