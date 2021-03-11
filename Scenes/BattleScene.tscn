@@ -63,22 +63,34 @@ margin_top = 358.0
 margin_bottom = 537.0
 
 [node name="UnitUI_P2_1" parent="." instance=ExtResource( 8 )]
-margin_left = 896.662
-margin_top = 4.0473
-margin_right = 1021.66
-margin_bottom = 183.047
+anchor_left = 0.998
+anchor_top = 0.007
+anchor_right = 0.998
+anchor_bottom = 0.007
+margin_left = -125.29
+margin_top = -0.1527
+margin_right = -0.290039
+margin_bottom = 178.847
 
 [node name="UnitUI_P2_2" parent="." instance=ExtResource( 8 )]
-margin_left = 896.662
-margin_top = 183.047
-margin_right = 1021.66
-margin_bottom = 362.047
+anchor_left = 1.0
+anchor_top = 0.305
+anchor_right = 1.0
+anchor_bottom = 0.305
+margin_left = -127.338
+margin_top = 0.0473022
+margin_right = -2.33801
+margin_bottom = 179.047
 
 [node name="UnitUI_P2_3" parent="." instance=ExtResource( 8 )]
-margin_left = 896.662
-margin_top = 362.047
-margin_right = 1021.66
-margin_bottom = 541.047
+anchor_left = 1.0
+anchor_top = 0.603
+anchor_right = 1.0
+anchor_bottom = 0.603
+margin_left = -127.338
+margin_top = 0.247284
+margin_right = -2.33801
+margin_bottom = 179.247
 
 [node name="NextTurnButton" type="Button" parent="."]
 anchor_left = 0.825
@@ -95,13 +107,11 @@ __meta__ = {
 }
 
 [node name="NextTurnLabel" type="Label" parent="NextTurnButton"]
-anchor_left = 0.826
-anchor_top = 0.892
-anchor_right = 0.989
+anchor_right = 1.024
 anchor_bottom = 1.0
-margin_left = -134.554
-margin_top = -32.7921
-margin_right = 5.89909
+margin_left = 5.03999
+margin_top = 3.7799
+margin_right = -0.0159149
 margin_bottom = -11.0841
 custom_fonts/font = SubResource( 2 )
 text = "Next Turn"
@@ -112,6 +122,6 @@ __meta__ = {
 }
 [connection signal="map_selector_connection" from="Map" to="Selector" method="_Get_Map"]
 [connection signal="Victory" from="TurnLabel" to="NextTurnButton" method="_Delete_this"]
+[connection signal="pressed" from="NextTurnButton" to="Selector" method="_Change_player"]
 [connection signal="pressed" from="NextTurnButton" to="TurnLabel" method="_on_NextTurnButton_pressed"]
 [connection signal="pressed" from="NextTurnButton" to="Camera" method="switch_sides"]
-[connection signal="pressed" from="NextTurnButton" to="Selector" method="_Change_player"]
