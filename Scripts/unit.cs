@@ -20,7 +20,14 @@ public class unit : KinematicBody
     public delegate void _unit_selected(TileTest one_underneath);
     [Signal]
     public delegate void _unit_died();
-    
+    [Signal]
+    public delegate void _connect_to_UI(unit unt);
+    [Signal]
+    public delegate void _selected_to_UI();
+    [Signal]
+    public delegate void _deselected_to_UI();
+    [Signal]
+    public delegate void _stat_change(unit unt);
 
     Vector3 velocity = Vector3.Zero;
     Vector3 direction;
@@ -120,6 +127,7 @@ public class unit : KinematicBody
     public void move(Vector3 dest)
     {
         point = dest;
+        EmitSignal("_stat_change", this);
     }
 
     public void deal_damage(Vector3 target)
@@ -172,7 +180,8 @@ public class unit : KinematicBody
                     health_points_current --;
                 damage --;
             }
-        GD.Print("Health: " + health_points_current.ToString());            
+       // GD.Print("Health: " + health_points_current.ToString()); 
+       EmitSignal("_stat_change", this);           
     }
 
     public void _Teleport_unit(Vector3 new_pos)

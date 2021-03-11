@@ -20,6 +20,7 @@ public class Selector : Spatial
             if ((curr_player == 1 && tile.unit_on_tile.IsInGroup("Player1"))||(curr_player == 2 && tile.unit_on_tile.IsInGroup("Player2")))
             { 
                 first = tile;
+                first.unit_on_tile.EmitSignal("_selected_to_UI");
                 GD.Print("first " + tile.coord(0).ToString() + ';' + tile.coord(1).ToString());
             }
         }
@@ -29,13 +30,18 @@ public class Selector : Spatial
             if ((Math.Abs(x1 - x2) == 2 && z1 == z2) || (Math.Abs(x1 - x2) == 1 && Math.Abs(z1 - z2) == 1))
             {
                 GD.Print("second "+ tile.coord(0).ToString() + ';' + tile.coord(1).ToString());
+                first.unit_on_tile.EmitSignal("_deselected_to_UI");
                 first.unit_on_tile._Change_Tile(tile);
                 first = null;
                 tile.unit_on_tile.action_points_current += tile.movement;
             }
         }
         else if (first != null && tile.unit_on_tile != null && ((first.unit_on_tile.IsInGroup("Player1") && tile.unit_on_tile.IsInGroup("Player1"))||(first.unit_on_tile.IsInGroup("Player2") && tile.unit_on_tile.IsInGroup("Player2"))))
+        {
+            first.unit_on_tile.EmitSignal("_deselected_to_UI");
             first = tile;
+            first.unit_on_tile.EmitSignal("_selected_to_UI");
+        }    
         else if (first != null && tile.unit_on_tile != null && first?.unit_on_tile.action_points_current > 0 && ((first.unit_on_tile.IsInGroup("Player1") && tile.unit_on_tile.IsInGroup("Player2"))||(first.unit_on_tile.IsInGroup("Player2") && tile.unit_on_tile.IsInGroup("Player1"))))
         {   
             if (map._Pathfind(first, tile)) first.unit_on_tile.deal_damage(tile.Transform.origin);
@@ -49,6 +55,7 @@ public class Selector : Spatial
         if (curr_player == 1) curr_player ++;
         else curr_player = 1;
         GD.Print("Player"+ curr_player.ToString());
+        if (first != null) first.unit_on_tile.EmitSignal("_deselected_to_UI");
         first = null;
     }
 

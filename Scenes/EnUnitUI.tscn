@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Unit/rsz_red_ava.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/UnitUI.cs" type="Script" id=2]
+
+[node name="UnitUI" type="VBoxContainer"]
+margin_right = 125.0
+margin_bottom = 179.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnitIcon" type="TextureRect" parent="."]
+margin_right = 125.0
+margin_bottom = 125.0
+grow_horizontal = 0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_top = 129.0
+margin_right = 125.0
+margin_bottom = 143.0
+max_value = 10.0
+value = 10.0
+
+[node name="SelectionLabel" type="Label" parent="."]
+margin_top = 147.0
+margin_right = 125.0
+margin_bottom = 161.0
+text = "Not selected"
+align = 1
+
+[node name="ActionLabel" type="Label" parent="."]
+margin_top = 165.0
+margin_right = 125.0
+margin_bottom = 179.0
+text = "4 action(s)"
+align = 1

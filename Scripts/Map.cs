@@ -38,6 +38,7 @@ public class Map : Spatial
     private void _Spawn_units()
     {
         var _unit_scene = GD.Load<PackedScene>("res://Scenes/unit.tscn");
+        int UI_number = 1;
         for (int i = 1; i < 10; i += 4)
         {
             var _unit = _unit_scene.Instance() as unit;
@@ -50,7 +51,14 @@ public class Map : Spatial
             GetNode("../NextTurnButton").Connect("pressed", _unit, "_Refresh_AP");
             _unit.Connect("_unit_selected", GetNode("../Selector"), "_on_Tile_selected");
             _unit.Connect("_unit_died", GetNode("../TurnLabel"), "_On_P1_unit_death");
+            _unit.Connect("_connect_to_UI", GetNode("../UnitUI_P1_" + UI_number.ToString()), "_Texture_set");
+            _unit.EmitSignal("_connect_to_UI", this);
+            _unit.Connect("_selected_to_UI", GetNode("../UnitUI_P1_" + UI_number.ToString()), "_Selected");
+            _unit.Connect("_deselected_to_UI", GetNode("../UnitUI_P1_" + UI_number.ToString()), "_Deselected");
+            _unit.Connect("_stat_change", GetNode("../UnitUI_P1_" + UI_number.ToString()), "_Stat_change");
+            UI_number ++;
         }
+        UI_number = 1;
         for (int i = 1; i < 10; i += 4)
         {
             var _unit = _unit_scene.Instance() as unit;
@@ -63,6 +71,12 @@ public class Map : Spatial
             GetNode("../NextTurnButton").Connect("pressed", _unit, "_Refresh_AP");
             _unit.Connect("_unit_selected", GetNode("../Selector"), "_on_Tile_selected");
             _unit.Connect("_unit_died", GetNode("../TurnLabel"), "_On_P2_unit_death");
+            _unit.Connect("_connect_to_UI", GetNode("../UnitUI_P2_" + UI_number.ToString()), "_Texture_set");
+            _unit.EmitSignal("_connect_to_UI", this);
+            _unit.Connect("_selected_to_UI", GetNode("../UnitUI_P2_" + UI_number.ToString()), "_Selected");
+            _unit.Connect("_deselected_to_UI", GetNode("../UnitUI_P2_" + UI_number.ToString()), "_Deselected");
+            _unit.Connect("_stat_change", GetNode("../UnitUI_P2_" + UI_number.ToString()), "_Stat_change");
+            UI_number ++;
         }
     }
     public TileTest _Get_Tile_from_Map(int rows, int columns)
