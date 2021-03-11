@@ -122,6 +122,12 @@ public class unit : KinematicBody
         AddChild(robot);
         anim_player = (AnimationPlayer)GetNode(name+"/AnimationPlayer");
         anim_player.Connect("animation_finished", GetNode("."), "_on_AnimationPlayer_animation_finished");
+        if (player == 2)
+        {
+            Vector3 char_rot = body.Rotation;
+            char_rot.y = 135;
+            body.Rotation = char_rot;
+        }
     }
 
     public void move(Vector3 dest)
@@ -132,14 +138,16 @@ public class unit : KinematicBody
 
     public void deal_damage(Vector3 target)
     {
-        float angle = (float)Atan2(target.x, target.z);
+        Vector3 dir = target - Transform.origin;
+        float angle = (float)Atan2(dir.x, dir.z);
         Vector3 char_rot = body.Rotation;
         char_rot.y = angle;
         body.Rotation = char_rot;
-        is_shooting = true;
+        
         var bullet = _bullet_scene.Instance() as bullet;
         AddChild(bullet);
-        bullet.create_bullet(target);
+        bullet.create_bullet(dir);
+        is_shooting = true;
     }
 
     public void _on_AnimationPlayer_animation_finished(string anim_name)
