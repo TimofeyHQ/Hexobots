@@ -44,9 +44,13 @@ public class Selector : Spatial
         }    
         else if (first != null && tile.unit_on_tile != null && first?.unit_on_tile.action_points_current > 0 && ((first.unit_on_tile.IsInGroup("Player1") && tile.unit_on_tile.IsInGroup("Player2"))||(first.unit_on_tile.IsInGroup("Player2") && tile.unit_on_tile.IsInGroup("Player1"))))
         {   
-            if (map._Pathfind(first, tile)) first.unit_on_tile.deal_damage(tile.Transform.origin);
+            if (map._Pathfind(first, tile)) 
+            {
+            first.unit_on_tile.deal_damage(tile.Transform.origin);
             tile.unit_on_tile._Receive_Damage(first.unit_on_tile.attack_points);
             first.unit_on_tile.action_points_current --;
+            }
+            
         }
     }
 

@@ -95,8 +95,9 @@ public class Map : Spatial
     {
         if (Math.Abs(one.coord(0) - two.coord(0)) == 2 && one.coord(1) == two.coord(1))
         {
+            int di = two.coord(0) - one.coord(0);
             int j = one.coord(1);
-            for (int i = one.coord(0) + 5; i < two.coord(0) + 5; i+=2)
+            for (int i = one.coord(0) + 5; i < two.coord(0) + 5; i+=di)
                 if (map[i,j] != null)
                     if (map[i, j].movement == -1488) return false;
             return true;
