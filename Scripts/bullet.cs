@@ -1,28 +1,24 @@
 using Godot;
 using System;
 
-public class bullet : MeshInstance
+public class bullet : KinematicBody
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+    private int speed = 200;
+    Vector3 target = Vector3.Zero;
+    Vector3 velocity = Vector3.Zero;
+    Vector3 direction = Vector3.Zero;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         
     }
+    public override void _Process(float delta)
+    {
+        MoveAndSlide(velocity);
+    }
 
     public void create_bullet(Vector3 dest)
     {
-        // Vector3 length;
-        // length = dest - Transform.origin;
-        // this.Transform = length;
+        velocity = dest;
     }
 }
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
