@@ -1,15 +1,127 @@
-[gd_scene format=2]
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/Map.cs" type="Script" id=1]
+[ext_resource path="res://Resources/Fonts/20354.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/NextTurnButton.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/TurnLabel.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/Selector.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/Camera.cs" type="Script" id=6]
+[ext_resource path="res://Scenes/UnitUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/EnUnitUI.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 39
+outline_size = 2
+outline_color = Color( 0.729412, 0.254902, 0.796078, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 1
+outline_color = Color( 0.898039, 0.0627451, 0.0627451, 1 )
+font_data = ExtResource( 2 )
 
 [node name="BattleScene" type="Spatial"]
 
 [node name="Map" type="Spatial" parent="."]
+script = ExtResource( 1 )
 
-[node name="GridMap" type="GridMap" parent="Map"]
-data = {
-"cells": PoolIntArray(  )
-}
-__meta__ = {
-"_editor_clip_": 0
-}
+[node name="Selector" type="Spatial" parent="."]
+script = ExtResource( 5 )
 
 [node name="Camera" type="Camera" parent="."]
+transform = Transform( -1, 2.09447e-07, -2.49609e-07, 0, 0.766044, 0.642788, 3.25841e-07, 0.642788, -0.766044, 0, 7, -11 )
+script = ExtResource( 6 )
+
+[node name="TurnLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.952
+margin_top = 4.0473
+margin_right = 197.048
+margin_bottom = 45.0473
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( -710.198, 435.808 )
+custom_fonts/font = SubResource( 1 )
+text = "Player's turn 0"
+align = 1
+valign = 1
+max_lines_visible = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnitUI_P1_1" parent="." instance=ExtResource( 7 )]
+
+[node name="UnitUI_P1_2" parent="." instance=ExtResource( 7 )]
+margin_top = 179.0
+margin_bottom = 358.0
+
+[node name="UnitUI_P1_3" parent="." instance=ExtResource( 7 )]
+margin_top = 358.0
+margin_bottom = 537.0
+
+[node name="UnitUI_P2_1" parent="." instance=ExtResource( 8 )]
+anchor_left = 0.998
+anchor_top = 0.007
+anchor_right = 0.998
+anchor_bottom = 0.007
+margin_left = -125.29
+margin_top = -0.1527
+margin_right = -0.290039
+margin_bottom = 178.847
+
+[node name="UnitUI_P2_2" parent="." instance=ExtResource( 8 )]
+anchor_left = 1.0
+anchor_top = 0.305
+anchor_right = 1.0
+anchor_bottom = 0.305
+margin_left = -127.338
+margin_top = 0.0473022
+margin_right = -2.33801
+margin_bottom = 179.047
+
+[node name="UnitUI_P2_3" parent="." instance=ExtResource( 8 )]
+anchor_left = 1.0
+anchor_top = 0.603
+anchor_right = 1.0
+anchor_bottom = 0.603
+margin_left = -127.338
+margin_top = 0.247284
+margin_right = -2.33801
+margin_bottom = 179.247
+
+[node name="NextTurnButton" type="Button" parent="."]
+anchor_left = 0.825
+anchor_top = 0.902
+anchor_right = 0.989
+anchor_bottom = 0.983
+margin_left = 3.20001
+margin_top = 5.79999
+margin_right = 4.26398
+margin_bottom = -1.79999
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextTurnLabel" type="Label" parent="NextTurnButton"]
+anchor_right = 1.024
+anchor_bottom = 1.0
+margin_left = 5.03999
+margin_top = 3.7799
+margin_right = -0.0159149
+margin_bottom = -11.0841
+custom_fonts/font = SubResource( 2 )
+text = "Next Turn"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="map_selector_connection" from="Map" to="Selector" method="_Get_Map"]
+[connection signal="Victory" from="TurnLabel" to="NextTurnButton" method="_Delete_this"]
+[connection signal="pressed" from="NextTurnButton" to="Selector" method="_Change_player"]
+[connection signal="pressed" from="NextTurnButton" to="TurnLabel" method="_on_NextTurnButton_pressed"]
+[connection signal="pressed" from="NextTurnButton" to="Camera" method="switch_sides"]

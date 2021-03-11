@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/TestHexagonTile.mtl.obj-db9e5e3ec2a5d8da72fda6de559c67c4.mesh"
+
+[deps]
+
+files=[ "res://.import/TestHexagonTile.mtl.obj-db9e5e3ec2a5d8da72fda6de559c67c4.mesh" ]
+
+source_file="res://Resources/Tiles/TestHexagonTile.mtl.obj"
+dest_files=[ "res://.import/TestHexagonTile.mtl.obj-db9e5e3ec2a5d8da72fda6de559c67c4.mesh", "res://.import/TestHexagonTile.mtl.obj-db9e5e3ec2a5d8da72fda6de559c67c4.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
