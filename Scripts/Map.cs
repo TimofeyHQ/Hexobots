@@ -93,21 +93,61 @@ public class Map : Spatial
 
     public bool _Pathfind(TileTest one, TileTest two)
     {
-        if (Math.Abs(one.coord(0) - two.coord(0)) == 2 && one.coord(1) == two.coord(1))
+        if (Math.Abs(one.coord(0) - two.coord(0)) % 2 == 0 && one.coord(1) == two.coord(1))
         {
-            int j = one.coord(1);
-            for (int i = one.coord(0) + 5; i < two.coord(0) + 5; i+=2)
+            int j = one.coord(1), imax, imin;
+            if (one.coord(0) > two.coord(0))
+            {
+                imin = two.coord(0) + 5;
+                imax = one.coord(0) + 5;
+            }
+            else
+            {
+                imax = two.coord(0) + 5;
+                imin = one.coord(0) + 5;
+            }
+            for (int i = imin; i < imax; i++)
                 if (map[i,j] != null)
+                    {
                     if (map[i, j].movement == -1488) return false;
+                    }
             return true;
+            
         }
         else if (Math.Abs(one.coord(0) - two.coord(0)) == Math.Abs(one.coord(1) - two.coord(1)))
-        {
-            int di = two.coord(0) - one.coord(0), dj = two.coord(1) - one.coord(1);
-            for (int i = one.coord(0) + 5; i < two.coord(0) + 5; i += di)
-                for (int j = one.coord(1) + 5; j < two.coord(1) + 5; j += dj)
-                    if (map[i,j] != null)    
-                        if (map[i, j].movement == -1488) return false;
+        {   
+            int jmin, jmax, imin, imax;
+            if (one.coord(0) > two.coord(0))
+            {
+                imin = two.coord(0) + 5;
+                imax = one.coord(0) + 5;
+            }
+            else
+            {
+                imax = two.coord(0) + 5;
+                imin = one.coord(0) + 5;
+            }
+            if (one.coord(1) > two.coord(1))
+            {
+                jmin = two.coord(1) + 5;
+                jmax = one.coord(1) + 5;
+            }
+            else
+            {
+                jmax = two.coord(1) + 5;
+                jmin = one.coord(1) + 5;
+            }
+            int i = imin;
+            int j = jmin;
+            while (i < imax && j < jmax)
+            {
+                if (map[i,j] != null)
+                    {
+                    if (map[i, j].movement == -1488) return false;
+                    }
+                i++;
+                j++;
+            }
             return true;
         }
         return false;
