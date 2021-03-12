@@ -106,10 +106,14 @@ public class Map : Spatial
                 imax = two.coord(0) + 5;
                 imin = one.coord(0) + 5;
             }
-            for (int i = imin; i < imax; i++)
-                if (map[i,j] != null)
+            GD.Print("imin: " + imin + " imax: " + imax);
+            for (int i = imin; i < imax; i+=2)
+                if (i >= 11 || i < 0)
+                    break;
+                else
+                    if (map[i,j] != null)
                     {
-                    if (map[i, j].movement == -1488) return false;
+                        if (map[i, j].movement == -1488) return false;
                     }
             return true;
             
