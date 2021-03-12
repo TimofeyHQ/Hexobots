@@ -93,29 +93,6 @@ public class Map : Spatial
 
     public bool _Pathfind(TileTest one, TileTest two)
     {
-        // if (Math.Abs(one.coord(0) - two.coord(0)) % 2 == 0 && one.coord(1) == two.coord(1))
-        // {
-        //     int j = one.coord(1);
-        //     int di = Math.Abs(two.coord(0)-one.coord(0))/(two.coord(0)-one.coord(0));
-        //     for (int i = one.coord(0) + 5; i != two.coord(0) + 5; i+=2*di)
-        //     {
-        //         if (map[i,j] != null)
-        //             if (map[i, j].movement == -1488) return false;
-        //         GD.Print(map[i,j].coord(0) + "  " + map[i,j].coord(1));
-        //     }
-        //     return true;
-        // }
-        // else if (Math.Abs(one.coord(0) - two.coord(0)) == Math.Abs(one.coord(1) - two.coord(1)))
-        // {
-        //     int di = two.coord(0) - one.coord(0)/Math.Abs(two.coord(0) - one.coord(0));
-        //     int dj = two.coord(1) - one.coord(1)/Math.Abs(two.coord(1) - one.coord(1));
-        //     for (int i = one.coord(0) + 5; i != two.coord(0) + 5; i += di)
-        //         for (int j = one.coord(1) + 5; j != two.coord(1) + 5; j += dj)
-        //             if (map[i,j] != null)    
-        //                 if (map[i, j].movement == -1488) return false;
-        //     return true;
-        // }
-        // return false;
         if (Math.Abs(one.coord(0) - two.coord(0)) % 2 == 0 && one.coord(1) == two.coord(1))
         {
             int j = one.coord(1), imax, imin;
