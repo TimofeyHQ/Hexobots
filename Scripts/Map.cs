@@ -95,7 +95,7 @@ public class Map : Spatial
     {
         if (Math.Abs(one.coord(0) - two.coord(0)) % 2 == 0 && one.coord(1) == two.coord(1))
         {
-            int j = one.coord(1), imax, imin;
+            int j = one.coord(1) + 5, imax, imin;
             if (one.coord(0) > two.coord(0))
             {
                 imin = two.coord(0) + 5;
@@ -108,13 +108,10 @@ public class Map : Spatial
             }
             GD.Print("imin: " + imin + " imax: " + imax);
             for (int i = imin; i < imax; i+=2)
-                if (i >= 11 || i < 0)
-                    break;
-                else
-                    if (map[i,j] != null)
-                    {
-                        if (map[i, j].movement == -1488) return false;
-                    }
+                if (map[i,j] != null)
+                {
+                    if (map[i, j].movement == -1488) return false;
+                }
             return true;
             
         }
