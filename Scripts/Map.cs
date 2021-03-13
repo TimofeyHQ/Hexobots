@@ -35,48 +35,42 @@ public class Map : Spatial
             }
     }
 
+    private void _Unit_Configuration(unit unt, int player_number,int column_number, int row_number, int UI_number)
+    {
+        unt.set_player(player_number);
+        unt.AddToGroup("Player" + player_number.ToString());
+        unt._Change_Tile(map[column_number, row_number]);
+        GetNode("../NextTurnButton").Connect("pressed", unt, "_Refresh_AP");
+        unt.Connect("_unit_selected", GetNode("../Selector"), "_on_Tile_selected");
+        unt.Connect("_unit_died", GetNode("../TurnLabel"), "_On_P" + player_number.ToString() + "_unit_death");
+        unt.Connect("_connect_to_UI", GetNode("../UnitUI_P"+ player_number.ToString() +"_" + UI_number.ToString()), "_Texture_set");
+        unt.EmitSignal("_connect_to_UI", this);
+        unt.Connect("_selected_to_UI", GetNode("../UnitUI_P"+ player_number.ToString() +"_" + UI_number.ToString()), "_Selected");
+        unt.Connect("_deselected_to_UI", GetNode("../UnitUI_P"+ player_number.ToString() +"_" + UI_number.ToString()), "_Deselected");
+        unt.Connect("_stat_change", GetNode("../UnitUI_P"+ player_number.ToString() +"_" + UI_number.ToString()), "_Stat_change");
+    }
     private void _Spawn_units()
     {
         var _unit_scene = GD.Load<PackedScene>("res://Scenes/unit.tscn");
-        int UI_number = 1;
+        int unit_player1_number = 1;
         for (int i = 1; i < 10; i += 4)
         {
             var _unit = _unit_scene.Instance() as unit;
             _unit._Teleport_unit(map[i, 0].Transform.origin);
             _unit._Set_Stats(4,10,4,4);
             AddChild(_unit);
-            _unit.set_player(1);
-            _unit.AddToGroup("Player1");
-            _unit._Change_Tile(map[i, 0]);
-            GetNode("../NextTurnButton").Connect("pressed", _unit, "_Refresh_AP");
-            _unit.Connect("_unit_selected", GetNode("../Selector"), "_on_Tile_selected");
-            _unit.Connect("_unit_died", GetNode("../TurnLabel"), "_On_P1_unit_death");
-            _unit.Connect("_connect_to_UI", GetNode("../UnitUI_P1_" + UI_number.ToString()), "_Texture_set");
-            _unit.EmitSignal("_connect_to_UI", this);
-            _unit.Connect("_selected_to_UI", GetNode("../UnitUI_P1_" + UI_number.ToString()), "_Selected");
-            _unit.Connect("_deselected_to_UI", GetNode("../UnitUI_P1_" + UI_number.ToString()), "_Deselected");
-            _unit.Connect("_stat_change", GetNode("../UnitUI_P1_" + UI_number.ToString()), "_Stat_change");
-            UI_number ++;
+            _Unit_Configuration(_unit, 1, i, 0, unit_player1_number);
+            unit_player1_number ++;
         }
-        UI_number = 1;
+        int unit_player2_number = 1;
         for (int i = 1; i < 10; i += 4)
         {
             var _unit = _unit_scene.Instance() as unit;
             _unit._Teleport_unit(map[i, 10].Transform.origin);
             _unit._Set_Stats(4,10,4,4);
             AddChild(_unit);
-            _unit.set_player(2);
-            _unit.AddToGroup("Player2");
-            _unit._Change_Tile(map[i, 10]);
-            GetNode("../NextTurnButton").Connect("pressed", _unit, "_Refresh_AP");
-            _unit.Connect("_unit_selected", GetNode("../Selector"), "_on_Tile_selected");
-            _unit.Connect("_unit_died", GetNode("../TurnLabel"), "_On_P2_unit_death");
-            _unit.Connect("_connect_to_UI", GetNode("../UnitUI_P2_" + UI_number.ToString()), "_Texture_set");
-            _unit.EmitSignal("_connect_to_UI", this);
-            _unit.Connect("_selected_to_UI", GetNode("../UnitUI_P2_" + UI_number.ToString()), "_Selected");
-            _unit.Connect("_deselected_to_UI", GetNode("../UnitUI_P2_" + UI_number.ToString()), "_Deselected");
-            _unit.Connect("_stat_change", GetNode("../UnitUI_P2_" + UI_number.ToString()), "_Stat_change");
-            UI_number ++;
+            _Unit_Configuration(_unit, 2, i, 10, unit_player2_number);
+            unit_player2_number ++;
         }
     }
     public TileTest _Get_Tile_from_Map(int rows, int columns)
